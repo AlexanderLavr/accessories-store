@@ -1,0 +1,28 @@
+.container-nav{
+    width: 100%;
+    height: 60px;
+    padding: 0 50px;
+    background-color: rgb(204, 202, 202);
+    .holder-nav{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .router-container{
+            display: flex;
+            margin-left: 40px;
+            flex-grow: 1;
+            div{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a{
+                    text-decoration: none;
+                    cursor: pointer;
+                    color: red;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
