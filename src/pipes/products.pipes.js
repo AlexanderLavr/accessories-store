@@ -2,7 +2,6 @@ import { request } from '../request/request';
 
 export const sortArraysProducts = (products, selectType = []) => {
     const allArraysProducts = [];
-
     if(selectType.length){
         selectType.forEach(el=>{
             products.forEach(product => {

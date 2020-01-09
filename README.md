@@ -1,4 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# After you've cloned the project, you need to run the command: 
+
+## `npm install -g json-server`
+
+This will install the son-server on your computer.
+
+After that, it is necessary to install the dependencies:
+
+## `npm install`
+
+To start json-server, open the "db" folder in the new terminal and execute the command: 
+
+## `json-server -w db.json`
+### json-server should be running on port 3000!
+
+To start a project - execute the command:
+
+## `npm start`
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Available Scripts
 

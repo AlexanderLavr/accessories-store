@@ -1,34 +1,33 @@
 import React from 'react';
 import './cart.scss';
 import PropTypes from 'prop-types';
-import { setItemStore, getItemStore } from '../../pipes';
+import { connect } from 'react-redux';
+import { CartTable } from '../material.components'
 
 
-export default class Cart extends React.Component{
-    state = {
-    }
+
+class Cart extends React.Component{
     render(){
-       
-        
-        return (
-            <div className="">
-
-            </div>
-        )
+        const { count } = this.props;
+        if(count){
+            return (
+                <div className="cart-container">
+                    <CartTable props={this.props}/>
+                </div>
+            )
+        }else{
+            return <h1>Ничего не выбранно!</h1>
+        }
     }
 }
 Cart.propTypes = { 
-    history: PropTypes.object, 
-    doProducts: PropTypes.func,
-    allArrayProducts: PropTypes.array
+    count: PropTypes.number 
 }
 
-// const mapStateToProps = (state) => ({
-//     allArrayProducts: state.products.allArrayProducts,
-//     // selectedProducts: state.products.selectedProducts
-// });
+const mapStateToProps = (state) => ({
+    count: state.cart.count
+});
   
-// export default connect(
-//     mapStateToProps,
-//     { doProducts }
-// )(Favorite);
+export default connect(
+    mapStateToProps
+)(Cart);

@@ -1,10 +1,10 @@
 import React from 'react';
 import './favorite.scss';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getFavoriteProducts } from '../../pipes';
 import { doProducts } from '../../redux/products/actions.products';
-import MediaCard from '../material.components/card/card.component';
+import { MediaCard } from '../material.components';
 
 
 
@@ -19,7 +19,7 @@ class Favorite extends React.Component{
         if(favorite.length){
             return (
                 <div className="container-faworite">
-                    { favorite.map((element, index)=>{
+                    {favorite.map((element, index)=>{
                         return  <MediaCard key={`card${index}`} data={element} doProducts={doProducts} /> 
                     })}
                 </div>

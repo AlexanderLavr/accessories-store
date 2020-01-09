@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Spinner, MediaCard } from '../material.components';
 import { doProducts, doSelectedProducts } from '../../redux/products/actions.products';
+import { initialStore } from '../../pipes';
 
 class Products extends React.Component{
     componentDidMount(){
@@ -13,6 +14,7 @@ class Products extends React.Component{
         }else{
             doProducts()
         }
+        initialStore()
     }
     render(){
         const { selectedProducts, doProducts } = this.props;

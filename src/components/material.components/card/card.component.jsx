@@ -7,17 +7,25 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { getId, changeFavorite } from '../../../pipes';
+import { getId, changeFavorite, addToCard } from '../../../pipes';
 import { doSelectedProducts } from '../../../redux/products/actions.products';//
-
+import { changeCount } from '../../../redux/cart/actions.cart';
 
 function MediaCard(props) {
-  const { data, doSelectedProducts, selectedTypeProducts } = props;
+  const { data, doSelectedProducts, selectedTypeProducts, allArrayProducts, changeCount } = props;
+
   const getFavorite = async (e) => {
     const element = e.currentTarget;
     let idElement = getId(element)
     await changeFavorite(idElement);
     await doSelectedProducts(selectedTypeProducts) 
+  }
+  
+  const toCard = (e) => {
+    const element = e.currentTarget;
+    let idElement = getId(element)
+    const count = addToCard(idElement, allArrayProducts);
+    changeCount(count)
   }
   
   return (
@@ -33,7 +41,7 @@ function MediaCard(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button className="card-button" size="small" color="secondary">
+          <Button className="card-button" size="small" color="secondary" id={`ca${data.id}`} onClick={(e)=>toCard(e)}>
             To cart
           </Button>
           <Button className="card-button" size="small" color="secondary" id={`fa${data.id}`} onClick={(e)=>getFavorite(e)}>
@@ -47,16 +55,19 @@ function MediaCard(props) {
 
 MediaCard.propTypes = { 
   data: PropTypes.object, 
+  allArrayProducts: PropTypes.array, 
+  selectedTypeProducts: PropTypes.array,
   doSelectedProducts: PropTypes.func,
-  selectedTypeProducts: PropTypes.array
+  changeCount: PropTypes.func
 }
 
 const mapStateToProps = (state) => ({
   selectedTypeProducts: state.products.selectedTypeProducts,
-  selectedProducts: state.products.selectedProducts
+  selectedProducts: state.products.selectedProducts,
+  allArrayProducts: state.products.allArrayProducts
 });
 
 export default connect(
   mapStateToProps,
-  { doSelectedProducts }
+  { doSelectedProducts, changeCount }
 )(MediaCard);
